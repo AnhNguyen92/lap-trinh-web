@@ -1,10 +1,75 @@
+
+body {
+    font-family: 'Droid Serif', serif;
+}
+/* 
 .logo {
-    border: 2px red;
+    border-image: url(images/logo.gif) 30 round;
+} */
+.title > h3 {
+    text-shadow: 0px 0px 0px #aa3c41, 7px 7px 0px rgb(0, 0, 253);
+    color: #aa3c41;
+    font-size: 60px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.title {
-    text-shadow: 0px 0px 0px #7e3140, 3px 3px 0px rgb(0, 0, 253);
-    color:#7e3140;
-    font-size: 30px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+.drop-cap::first-letter {
+    font-size: 400%;
+    color: #000000;
+}
+
+.drop-cap {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.title a {
+    color: #000000;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+table , th, td {
+    border: 1px solid #dfe2e5;
+    border-collapse: collapse;
+    margin: 15px;
+}
+th, td {
+    min-width: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+.section-title {
+    color: #aa3c41;
+    font-weight: bold;
+}
+.red {
+    color: #ff0000;
+}
+.blue::before {
+    color: #000000;content: #0000ff;
+}
+
+.blue {
+    
+}
+
+.pl-3 {
+    padding-left: 2px;
+}
+.pr-3 {
+    padding-right: 2px;
+}
+
+.social-link a {
+    font-weight: 700;
+
+}
+
+.active-link {
+    color: #629194;
+    text-shadow: 0px 5px 5px #000000;
+    text-decoration: none;
 }

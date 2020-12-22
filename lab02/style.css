@@ -1,11 +1,20 @@
 
 body {
-    font-family: 'Droid Serif', serif;
+    font-family: Arial, Helvetica, sans-serif, serif;
 }
-/* 
-.logo {
-    border-image: url(images/logo.gif) 30 round;
-} */
+
+* {
+    font-size: 20px;
+}
+
+.logo img {
+    border: 4px #ff0000;
+    border-radius: 16px;
+    background-clip: padding-box;
+    padding: 8px;
+    background: linear-gradient( #ff0000, #ff0000);
+}
+
 .title > h3 {
     text-shadow: 0px 0px 0px #aa3c41, 7px 7px 0px rgb(0, 0, 253);
     color: #aa3c41;
@@ -30,6 +39,10 @@ body {
     font-weight: bold;
 }
 
+.italic {
+    font-style: italic;
+}
+
 table , th, td {
     border: 1px solid #dfe2e5;
     border-collapse: collapse;
@@ -48,19 +61,19 @@ th, td {
 .red {
     color: #ff0000;
 }
-.blue::before {
-    color: #000000;content: #0000ff;
+.blue {
+    color: #000000;
 }
 
 .blue {
-    
+    color: #0000ff;
 }
 
-.pl-3 {
-    padding-left: 2px;
+.pl-4 {
+    padding-left: 4px;
 }
-.pr-3 {
-    padding-right: 2px;
+.pr-4 {
+    padding-right: 4px;
 }
 
 .social-link a {
@@ -70,6 +83,6 @@ th, td {
 
 .active-link {
     color: #629194;
-    text-shadow: 0px 5px 5px #000000;
+    text-shadow: 2px 3px 4px #000000;
     text-decoration: none;
 }

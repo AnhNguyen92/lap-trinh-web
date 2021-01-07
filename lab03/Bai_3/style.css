@@ -1,0 +1,150 @@
+body {
+    background-image: url("./images/bg-body.png");
+    background-repeat: no-repeat;
+    background-color: #E6F6F8;
+    margin: 0 auto;
+}
+
+.contain-all {
+    margin-left: 450px;
+    width: 700px;
+    background-color: #FFFFFF;
+}
+
+.header {
+    height: 140px;
+    background-image: url("./images/bg-header.jpg");
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+.header p {
+    margin: 0;
+    font-size: 23px;
+    font-style: italic;
+    line-height: 140px;
+    padding-left: 24px;
+    color: #AAAAAA;
+}
+
+.menu {
+    height: 50px;
+    margin-bottom: 5px;
+    background-image: url("./images/bg-menu.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.twitterbird {
+    float: left;
+    padding-left: 15px;
+    color: #FFFFFF;
+    text-decoration: none;
+    line-height: 50px;
+    display: block;
+}
+
+.twitterbird:hover {
+    background-image: url("./images/bg-menu-hover.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.main {
+    width: 500px;
+    float: left;
+}
+
+.banner-top {
+    height: 90px;
+    background-image: url("./images/bg-top.png");
+    background-repeat: no-repeat;
+}
+
+.text {
+    margin: 10px;
+}
+
+h2 {
+    color: #B8CB3D;
+    font-size: 30px;
+    margin: 0;
+}
+
+.date {
+    color: #DCDCDC;
+    margin-top: 0;
+}
+
+.txt1,
+.txt2 {
+    font-size: 12px;
+    line-height: 2;
+}
+
+.side-bar {
+    width: 185px;
+    float: left;
+    height: 200px;
+    margin-right: 5px;
+    background-color: #EFEFEF;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.side-bar-image {
+    height: 25px;
+    background-image: url("./images/button-feed.png"), url("./images/bg-feed.gif");
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.side-bar-image:hover {
+    background-position: bottom;
+}
+
+.link {
+    padding-left: 5px;
+    height: 30px;
+    box-sizing: border-box;
+    width: inherit;
+
+    line-height: 2;
+    border-bottom: 1px solid #BEBEBE;
+}
+
+.link a {
+    color: black;
+    text-decoration: none;
+}
+
+.side-bar-bottom {
+    background-image: url("./images/bg-sidebar-bottom.gif");
+}
+
+.clear {
+    clear: both;
+}
+
+.message {
+    height: 80px;
+    padding-left: 10px;
+    color: #97FFFF;
+}
+
+.footer {
+    height: 100px;
+    background-image: url("./images/bg-footer.jpg");
+    background-repeat: no-repeat;
+}
+
+.footer p {
+    line-height: 140px;
+    margin: 20px;
+    color: #FFFFFF;
+}

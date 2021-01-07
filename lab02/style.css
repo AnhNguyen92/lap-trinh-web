@@ -1,10 +1,109 @@
-.logo {
-    border: 2px red;
+
+body {
+    font-family: Arial, Helvetica, sans-serif, serif;
 }
 
-.title {
-    text-shadow: 0px 0px 0px #7e3140, 3px 3px 0px rgb(0, 0, 253);
-    color:#7e3140;
-    font-size: 30px;
+* {
+    font-size: 20px;
+}
+
+.logo img {
+    border: 4px #ff0000;
+    border-radius: 16px;
+    background-clip: padding-box;
+    padding: 8px;
+    background: linear-gradient( #ff0000, #ff0000);
+}
+
+.title > h3 {
+    text-shadow: 0px 0px 0px #aa3c41, 7px 7px 0px rgb(0, 0, 253);
+    color: #aa3c41;
+    font-size: 60px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+<<<<<<< Updated upstream
+.drop-cap::first-letter {
+    font-size: 400%;
+    color: #000000;
+}
+
+.drop-cap {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.title a {
+    color: #000000;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+table , th, td {
+    border: 1px solid #dfe2e5;
+    border-collapse: collapse;
+    margin: 15px;
+}
+th, td {
+    min-width: 50px;
+    padding: 10px;
+    text-align: center;
+}
+
+.section-title {
+    color: #aa3c41;
+    font-weight: bold;
+}
+.red {
+    color: #ff0000;
+}
+.blue {
+    color: #000000;
+}
+
+.blue {
+    color: #0000ff;
+}
+
+.pl-4 {
+    padding-left: 4px;
+}
+.pr-4 {
+    padding-right: 4px;
+}
+
+.social-link a {
+    font-weight: 700;
+
+}
+
+.active-link {
+    color: #629194;
+    text-shadow: 2px 3px 4px #000000;
+    text-decoration: none;
+}
+=======
+.grounded-radiants {position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(orange, violet);
+    background-clip: padding-box;
+    padding: 10px;
+    /* just to show box-shadow still works fine */
+    box-shadow: 0 3px 9px black, inset 0 0 9px white;
+}
+
+.grounded-radiants::after {
+    position: absolute;
+    top: -4px; bottom: -4px;
+    left: -4px; right: -4px;
+    background: linear-gradient(red, blue);
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+>>>>>>> Stashed changes

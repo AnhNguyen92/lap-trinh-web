@@ -1,18 +1,36 @@
 .container {
-    border: 1px solid black;
+    border: 1px solid #000000;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .header {
-    min-height: 50px;
+    height: 70px;
     vertical-align: middle;
+    border-bottom: 1px solid #0000001a;
+}
+.header h3 {
+    position: absolute;
+    vertical-align: middle;
+    margin: auto;
+    top: 25%;
+    left: 10%;
+}
+
+.hoz-nav {
+    padding: 1rem 0rem;
 }
 
 input.search-query {
     padding-left:26px;
+    width: 80%;
+    height: 35px;
+    padding-right: 10px;
 }
 
 form.form-search {
     position: relative;
+    width: inherit;
 }
 
 form.form-search:before {
@@ -23,9 +41,90 @@ form.form-search:before {
     background-image: url(http://getbootstrap.com/2.3.2/assets/img/glyphicons-halflings.png);
     background-position: -48px 0;
     position: absolute;
-    top:8px;
+    top:12px;
     left:8px;
     opacity: .5;
     z-index: 1000;
     border-radius: 10px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form > input {
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.vertical-link {
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+h5 {
+    padding: 0.5rem;
+    margin: 0;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: #000000;
+    background-color: #ccc;
+}
+
+/* Products */
+    /* img */
+.prod-item {
+    /* border: 1px solid green; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: white;
+}
+
+.prod-item > div > div {
+    margin: 5px 0;
+}
+
+.prod-item > div {
+    margin: 10px;
+    background: #f7f7f7;
+}
+
+.prod-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 50px;
+}
+
+.prod-img {
+    display: block;
+    width: inherit;
+    height: 270px;
+    margin: auto;
+    padding: 10px;
+}
+
+.prod-img img {
+    max-width: 250px;
+    max-height: 250px;
+    display: block;
+    margin: 0 auto;
+}
+
+.prod-price {
+    margin-bottom: 10px;
 }

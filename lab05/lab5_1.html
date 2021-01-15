@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lab5.1 - Nguyễn Tuấn Anh - 1733403</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-3">Form tính đơn giản</h1>
+    <form class="text-center">
+      <div class="form-group row">
+        <label for="noA" class="col-sm-2 col-form-label text-right">Số a:</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="noA">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="noB" class="col-sm-2 col-form-label text-right">Số b:</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="noB">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" for="calcType">Phép tính</label>
+        <div class="col-sm-2">
+          <select id="calcType" class="form-control">
+            <option selected value="plus">Cộng</option>
+            <option value="substract">Trừ</option>
+            <option value="multiply">Nhân</option>
+            <option value="divide">Chia</option>
+            <option value="power">Lũy thừa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label"></div>
+        <div class="col-sm-1"><input type="button" class="btn btn-primary" value="Tính" onclick="calculate()"></div>
+      </div>
+      <div class="form-group row">
+        <label for="result" class="col-sm-2 col-form-label text-right">Kết quả:</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="result">
+        </div>
+      </div>
+      
+    </form>
+  </div>
+  <script>
+    function calculate() {
+      let a = parseInt(document.getElementById("noA").value);
+      let b = parseInt(document.getElementById("noB").value);
+      let calcType = document.getElementById('calcType');
+      if (calcType.value === 'plus') {
+        document.getElementById('result').value = a + b;
+      }
+      else if (calcType.value === 'substract') {
+        document.getElementById('result').value = a - b;
+      }
+      else if (calcType.value === 'multiply') {
+        document.getElementById('result').value = a * b;
+      }
+      else if (calcType.value === 'divide') {
+        if (b == 0) {
+          alert('Moi ban nhap b khac 0');
+        } else {
+          document.getElementById('result').value = a / b;
+        }
+      }
+      else if (calcType.value === 'power') {
+        document.getElementById('result').value = Math.pow(a, b);
+      }
+    }
+  </script>
+  </form>
+</body>
+
+</html>

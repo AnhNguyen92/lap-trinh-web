@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<title>Lab5.2 - Nguyễn Tuấn Anh - 1733403</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style type="text/css"></style>
+
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Form đăng ký thành viên đơn giản</h1>
+		<form id="frmRegister">
+			<div class="form-group">
+				<label for="firstname">Tên:</label>
+				<input type="text" class="form-control" placeholder="Nhập tên" id="firstname">
+			</div>
+			<div class="form-group">
+				<label for="lastname">Họ:</label>
+				<input type="text" class="form-control" placeholder="Nhập họ" id="lastname">
+			</div>
+			<div class="form-group">
+				<label for="email">Địa chỉ email:</label>
+				<input type="text" class="form-control" placeholder="Nhập email" id="email">
+			</div>
+			<div class="form-group">
+				<label for="pwd">Mật khẩu:</label>
+				<input type="password" class="form-control" placeholder="Nhập mật khẩu" id="password">
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-3">
+					<label for="day">Ngày sinh:</label>
+					<select id="day" class="form-control">
+						<option selected value=""> --- Chọn Ngày --- </option>
+					</select>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="month">Tháng sinh:</label>
+					<select id="month" class="form-control">
+						<option selected value=""> --- Chọn Tháng --- </option>
+					</select>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="year">Năm sinh:</label>
+					<select id="year" class="form-control">
+						<option id="yearOpt" value=""> --- Chọn Năm --- </option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div><label>Giới tính:</label></div>
+
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="male" name="gender" checked class="custom-control-input">
+					<label class="custom-control-label"  for="male">Nam</label>
+				</div>
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="female" name="gender" class="custom-control-input">
+					<label class="custom-control-label" for="female">Nữ</label>
+				</div>
+				<div class="custom-control custom-radio custom-control-inline">
+					<input type="radio" id="other" name="gender" class="custom-control-input">
+					<label class="custom-control-label" for="other">Khác</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Nước:</label>
+				<select class="custom-select mr-sm-2" id="country">
+					<option value="" selected>-- Chọn quốc gia --</option>
+					<option value="vietnam">Vietnam</option>
+					<option value="australia">Australia</option>
+					<option value="unitedstate">United States</option>
+					<option value="india">India</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>About:</label>
+				<textarea class="form-control" id="txt-about"></textarea>
+			</div>
+			<div id="about-count"></div>
+			<div class="form-group">
+				<button type="button" class="btn btn-primary mr-2" onclick="submitForm()">Summit</button>
+				<button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		window.addEventListener('load', generateDayOption);
+		window.addEventListener('load', generateMonthOption);
+		window.addEventListener('load', generateYearOption);
+
+		function generateDayOption() {
+			for (let day = 1; day <= 31; day++) {
+				var optn = document.createElement("OPTION");
+				optn.text = day;
+				optn.value = day;
+				document.getElementById('day').options.add(optn);
+			}
+		}
+
+		function generateMonthOption() {
+			for (let month = 1; month <= 12; month++) {
+				var optn = document.createElement("OPTION");
+				optn.text = month;
+				optn.value = month;
+				document.getElementById('month').options.add(optn);
+			}
+		}
+
+		function generateYearOption() {
+			let d = new Date();
+			let yearNow = d.getFullYear();
+			for (y = yearNow - 50; y <= yearNow; y++) {
+				var optn = document.createElement("OPTION");
+				optn.text = y;
+				optn.value = y;
+				document.getElementById('year').options.add(optn);
+			}
+		}
+
+		function submitForm() {
+			if (isValidateInfo()) {
+				alert("Tất cả thông tin nhập đúng quy định!");
+			}
+		}
+
+		function isValidateInfo() {
+			let firstname = document.getElementById("firstname").value;
+			if (firstname === null || firstname.length < 2 || firstname.length > 30) {
+				alert("Tên phải từ 2 đến 30 ký tự.");
+				return false;
+			}
+
+			let lastname = document.getElementById("lastname").value;
+			if (lastname === null || lastname.length < 2 || lastname.length > 30) {
+				alert("Họ phải từ 2 đến 30 ký tự."); return false;
+			}
+
+			let email = document.getElementById("email").value;
+			if (email == null) {
+				alert("email không được để trống.");
+				return false;
+			} else if (!validateEmail(email)) {
+				alert("Nhập email sai định dạng");
+				return false;
+			}
+
+			let password = document.getElementById("password").value;
+			if (password === null || password.length < 2 || password.length > 30) {
+				alert("Mật khẩu phải từ 2 đến 30 ký tự.");
+				return false;
+			}
+
+			let day = document.getElementById("day").value;
+			let month = document.getElementById("month").value;
+			let year = document.getElementById("year").value;
+			if (day === "" || month === "" || year === "") {
+				alert("Bạn chưa chọn đủ ngày/tháng/năm");
+				return false;
+			} else {
+				if (!isValidDate(day, month, year)) {
+					alert("Ngày không tồn tại");
+					return false;
+				}
+			}
+
+			let country = document.getElementById("country").value;
+			if (country === "") {
+				alert("Bạn chưa chọn quốc gia.");
+				return false;
+			}
+
+			let about = document.getElementById("txt-about").value;
+			if (about !== null && about.length > 100000) {
+				alert("Nhập quá số luợng cho phép");
+				return false;
+			}
+
+			return true;
+		}
+
+		function isValidDate(day, month, year) {
+			let ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+			if (month != 2) {
+				if (day > ListofDays[month - 1]) {
+					return false;
+				}
+			} else {
+				let lyear = ( (year % 400) || ( (!year % 4) && (year % 100 ) ) );
+				if ( (!lyear && day >= 29 ) || (lyear && day > 29) ) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		function resetForm() {
+			document.getElementById("frmRegister").reset();
+		}
+		function validateEmail(email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		}
+
+	</script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Lab5.1 - Nguyễn Tuấn Anh - 1733403</title>
+  <title>Lab 5.1 - Nguyễn Tuấn Anh - 1733403</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
 <body>
   <div class="container mt-5">
     <h1 class="text-center mb-3">Form tính đơn giản</h1>
-    <form class="text-center">
+    <form class="text-center" action="#">
       <div class="form-group row">
         <label for="noA" class="col-sm-2 col-form-label text-right">Số a:</label>
         <div class="col-sm-6">
@@ -53,30 +53,53 @@
     </form>
   </div>
   <script>
+
     function calculate() {
-      let a = parseInt(document.getElementById("noA").value);
-      let b = parseInt(document.getElementById("noB").value);
-      let calcType = document.getElementById('calcType');
-      if (calcType.value === 'plus') {
-        document.getElementById('result').value = a + b;
-      }
-      else if (calcType.value === 'substract') {
-        document.getElementById('result').value = a - b;
-      }
-      else if (calcType.value === 'multiply') {
-        document.getElementById('result').value = a * b;
-      }
-      else if (calcType.value === 'divide') {
-        if (b == 0) {
-          alert('Moi ban nhap b khac 0');
-        } else {
-          document.getElementById('result').value = a / b;
+      let noA = document.getElementById("noA").value;
+      let noB = document.getElementById("noB").value;
+
+      if (validInputVal(noA, noB)) {
+        let a = parseInt(noA);
+        let b = parseInt(noB);
+        let calcType = document.getElementById('calcType');
+        let result = document.getElementById('result');
+        if (calcType.value === 'plus') {
+          result.value = a + b;
         }
-      }
-      else if (calcType.value === 'power') {
-        document.getElementById('result').value = Math.pow(a, b);
+        else if (calcType.value === 'substract') {
+          result.value = a - b;
+        }
+        else if (calcType.value === 'multiply') {
+          result.value = a * b;
+        }
+        else if (calcType.value === 'divide') {
+          if (b == 0) {
+            alert('Thuong so b phai khac 0');
+          } else {
+            result.value = a / b;
+          }
+        }
+        else if (calcType.value === 'power') {
+          result.value = Math.pow(a, b);
+        }
+      } else {
+        alert("Gia tri nhap khong hop le.");
       }
     }
+
+    function validInputVal (a) {
+      return (isInteger(a) || isFloat(a));
+    }
+
+    // https://stackoverflow.com/questions/3885817/how-do-i-check-that-a-number-is-float-or-integer
+    function isFloat(n) {
+    return n === +n && n !== (n|0);
+    }
+
+    function isInteger(n) {
+        return Number.isInteger(0) || (n === +n && n === (n|0));
+    }
+
   </script>
   </form>
 </body>

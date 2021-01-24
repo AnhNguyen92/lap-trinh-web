@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.module": "php"
+    },
+    "[json]": {
+
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "phpformatter.phpPath": "usr/bin/php"
+}

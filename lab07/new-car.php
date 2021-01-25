@@ -1,16 +1,30 @@
 <?php
 require_once "conn.php";
+
+$name = $year = $err_name = $err_year = "";
+$validInput = True;
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $year = $_POST['year'];
-    $sql = "INSERT INTO cars (name, year) VALUES ('$name','$year')";
-    if (mysqli_query($conn, $sql)) {
-        header("location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $sql . " " . mysqli_error($conn);
+    if ( empty(trim($name)) ||  strlen($name) < 5 || strlen($name) > 40 ) {
+        $err_name = "Tên hãng không được để trống, độ dài từ 5 đến 40 ký tự";
+        $validInput = false;
     }
-    mysqli_close($conn);
+    if ( empty(trim($year)) || $year < 1990 || $year > 2015 ) {
+        $err_year = "Năm sản xuất phải nằm trong khoảng 1990 đến 2015";
+        $validInput = false;
+    }
+    if ($validInput) {
+        $sql = "INSERT INTO cars (name, year) VALUES ('$name','$year')";
+        if (mysqli_query($conn, $sql)) {
+            header("location: index.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . " " . mysqli_error($conn);
+        }
+        mysqli_close($conn);
+    }       
+
 }
 ?>
 <!DOCTYPE html>
@@ -19,16 +33,11 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <title>Tạo thông tin xe mới - Lab7 - Nguyễn Tuấn Anh - 1733403</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/449b38c131.js" crossorigin="anonymous"></script>
+    <?php include 'header.php';?>
 </head>
 
 <body>
+    
     <div class="container-fluid my-2">
         <div class="col-6 m-auto">
             <div class="text-center">
@@ -37,15 +46,17 @@ if (isset($_POST['submit'])) {
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
                     <label>Tên <span class="text-danger">*</span></label>
-                    <input type="text" name="name" class="form-control" value="" maxlength="50" required="">
+                    <input type="text" name="name" placeholder="Hãng sản xuất" class="form-control" value="<?php echo "$name"; ?>" required>
+                    <small class="form-text text-danger"><?php echo "$err_name"; ?></small>
                 </div>
                 <div class="form-group">
                     <label>Năm sản xuất <span class="text-danger">*</span></label>
-                    <input type="number" name="year" class="form-control" value="" required="">
+                    <input type="number" name="year" placeholder="Năm sản xuất" class="form-control" value="<?php echo "$year"; ?>" required>
+                    <small class="form-text text-danger"><?php echo "$err_year"; ?></small>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" name="submit" value="submit">
-                    <a href="index.php" class="btn btn-default">Cancel</a>
+                    <input type="submit" class="btn btn-primary" name="submit" value="Lưu">
+                    <a href="index.php" class="btn btn-default">Hủy bỏ</a>
                 </div>
             </form>
         </div>

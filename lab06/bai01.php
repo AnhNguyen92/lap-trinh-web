@@ -6,19 +6,19 @@
 $x = 10;
 $y = 7;
 
-echo $x;
+echo "x = " . $x;
 echo "<br>";
-echo $y;
+echo "y = " . $y;
 echo "<br>";
-echo $x + $y;
+echo "x + y = " . ($x + $y);
 echo "<br>";
-echo $x - $y;
+echo "x - y = " . ($x - $y);
 echo "<br>";
-echo $x * $y;
+echo "x * y = " . ($x * $y);
 echo "<br>";
-echo $x / $y;
+echo "x / y = " . ($x / $y);
 echo "<br>";
-echo $x % $y;
+echo "x % y = " . ($x % $y);
 echo "<br>";
 ?>
 

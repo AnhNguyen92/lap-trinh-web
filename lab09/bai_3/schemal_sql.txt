@@ -1,0 +1,19 @@
+CREATE DATABASE `examples`;
+
+USE `examples`;
+
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL COMMENT 'id',
+  `username` varchar(50) NOT NULL COMMENT 'username',
+  `password` varchar(100) NOT NULL COMMENT 'password'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=2;
+COMMIT;
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '123456');

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab 9 - Quản lý Cookie - Nguyễn Tuấn Anh - 1733403</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/449b38c131.js" crossorigin="anonymous"></script>
+    <style>
+        a,
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1 class="my-4 text-uppercase">Quản lý Cookie</h1>
+        </div>
+        <div>
+            <div class="my-2">
+                <a href="#addModal" class="btn btn-success mr-2" data-toggle="modal">
+                    <i class="fa fa-plus-circle pr-2" aria-hidden="true" title="Thêm mới"></i>
+                    <strong>Thêm mới</strong>
+                </a>
+                <a href="JavaScript:void(0);" class="btn btn-danger" id="delete_multiple">
+                    <i class="fas fa-minus-circle pr-2"></i>
+                    <span>Xóa</span>
+                </a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Giá trị</th>
+                        <th scope="col">Hành động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- Add Modal HTML -->
+        <div id="addModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="car_form">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-uppercase text-center mx-auto">Thêm cookie mới</h4>
+                            <button type="button" class="close ml-0" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Tên <span class="text-danger">*</span></label>
+                                <input type="text" id="name" name="name" minlength="1" class="form-control" required>
+                                <small id="error-name" class="d-none error-name form-text text-danger">Tên cookie không
+                                    được để trống</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Giá trị <span class="text-danger">*</span></label>
+                                <input type="text" id="value" name="value" class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" value="1" name="type">
+                            <input type="button" class="btn btn-light" data-dismiss="modal" value="Hủy bỏ">
+                            <button type="button" class="btn btn-success" id="btn-add">Thêm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Modal HTML -->
+        <div id="editModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="update_form">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-uppercase text-center mx-auto">Chỉnh sửa thông tin Cookie</h4>
+                            <button type="button" class="close ml-0" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="id_u" name="id" class="form-control" required>
+                            <div class="form-group">
+                                <label>Tên <span class="text-danger">*</span></label>
+                                <input type="text" id="name_u" name="name" minlength="1" maxlength="40"
+                                    class="form-control" required>
+                                <small id="error-name-u" class="d-none error-name-u form-text text-danger">Tên cookie phải
+                                    có ít nhất 1 ký tự!</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Giá trị <span class="text-danger">*</span></label>
+                                <input type="text" id="value_u" name="value" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" value="2" name="type">
+                            <input type="button" class="btn btn-light" data-dismiss="modal" value="Hủy bỏ">
+                            <button type="button" class="btn btn-info" id="update">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Modal HTML -->
+        <div id="deleteModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Xóa cookie</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="id_d" name="id" class="form-control">
+                            <p>Bạn có muốn xóa dữ liệu này?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-light" data-dismiss="modal" value="Hủy bỏ">
+                            <button type="button" class="btn btn-danger" id="delete">Xóa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        generate_cookie();
+    });
+
+    $(document).on('click', '#btn-add', function (e) {
+        let name = $('#name').val().trim();
+        let value = $('#value').val();
+        let validInput = true;
+        if (name === "") {
+            $("#error-name").removeClass("d-none").addClass("d-block");
+        } else {
+            set_cookie(name, value, 2, "/");
+            alert('Thêm mới thành công!');
+            $('#addModal').modal('hide');
+            generate_cookie();
+            location.reload();
+        }
+    });
+
+    $(document).on('click', '.update', function (e) {
+        let id = $(this).attr("data-id");
+        let name = $(this).attr("data-name");
+        let value = $(this).attr("data-value");
+        $('#id_u').val(id);
+        $('#name_u').val(name);
+        $('#value_u').val(value);
+    });
+
+    $(document).on('click', '#update', function (e) {
+        let name = $('#name_u').val().trim();
+        let value = $('#value_u').val();
+
+        set_cookie(name, value, 2, "/");
+        alert('Thêm mới thành công!');
+        $('#editModal').modal('hide');
+        generate_cookie();
+        location.reload();
+    });
+
+    $(document).on("click", ".delete", function () {
+        let id = $(this).attr("data-id");
+        $('#id_d').val(id);
+    });
+
+    $(document).on("click", "#delete", function () {
+        let cookie_name = $("#id_d").val();
+        delete_cookie(cookie_name);
+        $('#deleteModal').modal('hide');
+        generate_cookie();
+        location.reload();
+    });
+
+    $(document).on("click", "#delete_multiple", function () {
+        let user = [];
+        $(".user_checkbox:checked").each(function () {
+            user.push($(this).data('user-id'));
+        });
+        if (user.length <= 0) {
+            alert("Bạn chưa chọn dòng nào.");
+        }
+        else {
+            WRN_PROFILE_DELETE = "Bạn có chắc chắn muốn xóa " + (user.length > 1 ? "những " : " ") + "dòng này?";
+            let checked = confirm(WRN_PROFILE_DELETE);
+            if (checked == true) {
+                user.forEach(cookie_name => {
+                    delete_cookie(cookie_name);
+                })
+                generate_cookie();
+                location.reload();
+                // let selected_values = user.join(",");
+                // console.log(selected_values);
+                // $.ajax({
+                //     type: "POST",
+                //     url: "backend/function.php",
+                //     cache: false,
+                //     data: {
+                //         type: 4,
+                //         id: selected_values
+                //     },
+                //     success: function (response) {
+                //         let ids = response.split(",");
+                //         for (let i = 0; i < ids.length; i++) {
+                //             $("#" + ids[i]).remove();
+                //         }
+                //     }
+                // });
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        let checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function () {
+            if (this.checked) {
+                checkbox.each(function () {
+                    this.checked = true;
+                });
+            } else {
+                checkbox.each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+        checkbox.click(function () {
+            if (!this.checked) {
+                $("#selectAll").prop("checked", false);
+            }
+        });
+    });
+
+    function generate_cookie() {
+
+        let t_body = document.getElementsByTagName("tbody")[0];
+        t_body.innerHTML = '';
+        let cookie_arr = document.cookie.split(';');
+        for (i = 0; i < cookie_arr.length; i++) {
+            let cookie = cookie_arr[i].split("=");
+            let name = cookie[0];
+            let value = cookie[1];
+            let tr = document.createElement("tr");
+            tr.setAttribute("id", name);
+            let td_row = document.createElement("td");
+            td_row.setAttribute("scope", "row");
+            td_row.innerText = i + 1;
+            tr.appendChild(td_row);
+
+            let td_check_box = document.createElement("td");
+            let span = document.createElement("span");
+            span.classList.add("custom-checkbox");
+
+            let input_check_box = document.createElement("input");
+            input_check_box.setAttribute("type", "checkbox");
+            input_check_box.setAttribute("class", "user_checkbox")
+            input_check_box.setAttribute("data-user-id", name);
+            let label = document.createElement("label");
+            label.setAttribute("for", "checkbox");
+            td_check_box.appendChild(span);
+            td_check_box.appendChild(input_check_box);
+            td_check_box.appendChild(label);
+            tr.appendChild(td_check_box);
+
+            let td_name = document.createElement("td");
+            td_name.innerText = name;
+            tr.appendChild(td_name);
+
+            let td_value = document.createElement("td");
+            td_value.innerText = value;
+            tr.appendChild(td_value);
+
+            let td_action = document.createElement("td");
+            let a_edit = document.createElement("a");
+            a_edit.setAttribute("href", "#editModal");
+            a_edit.setAttribute("class", "edit mr-3");
+            a_edit.setAttribute("data-toggle", "modal");
+
+            i_edit = document.createElement("i");
+            i_edit.setAttribute("class", "fas fa-edit update");
+            i_edit.setAttribute("data-toggle", "tooltip");
+            i_edit.setAttribute("data-id", name);
+            i_edit.setAttribute("data-name", name);
+            i_edit.setAttribute("data-value", value);
+            i_edit.setAttribute("title", "Chỉnh sửa");
+            a_edit.appendChild(i_edit);
+
+            let a_delete = document.createElement("a");
+            a_delete.setAttribute("href", "#deleteModal");
+            a_delete.setAttribute("class", "delete text-danger");
+            a_delete.setAttribute("data-id", name);
+            a_delete.setAttribute("data-toggle", "modal");
+
+            i_delete = document.createElement("i");
+            i_delete.setAttribute("class", "far fa-trash-alt");
+            i_delete.setAttribute("data-toggle", "tooltip");
+            i_delete.setAttribute("title", "Xóa");
+            a_delete.appendChild(i_delete);
+
+            td_action.appendChild(a_edit);
+            td_action.appendChild(a_delete);
+
+            tr.appendChild(td_action);
+
+            t_body.appendChild(tr);
+        }
+
+    }
+
+    function set_cookie(name, value, days2expire, path) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days2expire * 24 * 60 * 60 * 1000));
+        var expires = date.toUTCString();
+        document.cookie = name + '=' + value + ';' + 'expires=' + expires + ';' + 'path=' + path + ';';
+    }
+
+    function delete_cookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    }
+</script>
+
+</html>

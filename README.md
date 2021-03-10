@@ -1,2 +1,2 @@
 # lap-trinh-web
- lab + bai tap lon mon lap trinh web
+ lab mon lap trinh web

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
-<title>Lab5.2 - Nguyễn Tuấn Anh - 1733403</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<style type="text/css"></style>
+
+<head>
+	<title>Lab5.2 - Nguyễn Tuấn Anh - 1733403</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<style type="text/css"></style>
+</head>
 
 <body>
 	<div class="container mt-5">
@@ -54,7 +57,7 @@
 
 				<div class="custom-control custom-radio custom-control-inline">
 					<input type="radio" id="male" name="gender" checked class="custom-control-input">
-					<label class="custom-control-label"  for="male">Nam</label>
+					<label class="custom-control-label" for="male">Nam</label>
 				</div>
 				<div class="custom-control custom-radio custom-control-inline">
 					<input type="radio" id="female" name="gender" class="custom-control-input">
@@ -183,14 +186,14 @@
 		}
 
 		function isValidDate(day, month, year) {
-			let ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+			let ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 			if (month != 2) {
 				if (day > ListofDays[month - 1]) {
 					return false;
 				}
 			} else {
-				let lyear = ( (year % 400) || ( (!year % 4) && (year % 100 ) ) );
-				if ( (!lyear && day >= 29 ) || (lyear && day > 29) ) {
+				let lyear = ((year % 400) || ((!year % 4) && (year % 100)));
+				if ((!lyear && day >= 29) || (lyear && day > 29)) {
 					return false;
 				}
 			}

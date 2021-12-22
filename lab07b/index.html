@@ -11,8 +11,157 @@
 
 <body>
     <div class="container mt-5">
-        
+        <h1 class="mb-2">Tạo và chỉnh sửa động một HTML table sử dụng JS</h1>
+        <!-- content -->
+        <div class="main-content">
+            <div class="action">
+                <div class="my-2">
+                    <button class="btn btn-success mr-1" onclick="initTable()">Tạo bảng mới (2x2)</button>
+                    <button class="btn btn-primary mr-1" onclick="addRow()">Thêm 1 hàng</button>
+                    <button class="btn btn-primary mr-1" onclick="addColumn()">Thêm 1 cột</button>
+                </div>
+                <div class="my-2">
+                    <button class="btn btn-warning mr-1" onclick="removeRowCol()">Xóa 1 hàng/cột</button>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="col-row" id="rowRadio" checked value="row">
+                        <label class="form-check-label" for="rowRadio">Hàng</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="col-row" id="colRadio" value="col">
+                        <label class="form-check-label" for="colRadio">Cột</label>
+                    </div>
+                    <input type="number" min="1" id="index">
+                </div>
+                <div class="my-2">
+                    <button class="btn btn-danger mr-1" onclick="deleteTable()">Xóa bảng</button>
+                </div>
+            </div>
+        </div>
+        <div class="my-3"></div>
+        <div id="table" class="shadow p-3 mb-5 bg-white rounded">
+
+        </div>
     </div>
+
 </body>
+<script>
+    function initTable() {
+        let tableDiv = document.getElementById('table');
+        if (document.getElementsByTagName('table').length > 0) {
+            alert('Bang da duoc tao!');
+        } else {
+            let table = document.createElement('table');
+            table.setAttribute('class', 'table table-bordered table-striped')
+            let tableBody = document.createElement('tbody');
+            table.appendChild(tableBody);
+            for (let i = 0; i < 2; i++) {
+                let tr = document.createElement('tr');
+                tableBody.appendChild(tr);
+                for (let j = 0; j < 2; j++) {
+                    let td = document.createElement('td');
+                    td.appendChild(document.createTextNode("Cell " + i + "," + j));
+                    tr.appendChild(td);
+                }
+            }
+            tableDiv.appendChild(table);
+        }
+    }
+
+    function addRow() {
+        if (document.getElementsByTagName('table').length == 0) {
+            alert('Bảng chưa được tạo!');
+        } else {
+            let tr = document.createElement('tr');
+            let totalCol = document.getElementsByTagName('table')[0].rows[0].cells.length;
+            let totalRow = document.getElementsByTagName('table')[0].tBodies[0].rows.length;
+            for (let j = 0; j < totalCol; j++) {
+                let td = document.createElement('td');
+                td.appendChild(document.createTextNode("Cell " + totalRow + "," + j));
+                tr.appendChild(td);
+            }
+            let tableBody = document.getElementsByTagName('tbody')[0];
+            tableBody.appendChild(tr);
+        }
+    }
+
+    function addColumn() {
+        if (document.getElementsByTagName('table').length == 0) {
+            alert('Bảng chưa được tạo!');
+        } else {
+            let tr = document.createElement('tr');
+            let totalCol = document.getElementsByTagName('table')[0].rows[0].cells.length;
+            let totalRow = document.getElementsByTagName('table')[0].tBodies[0].rows.length;
+            let tableBody = document.getElementsByTagName('tbody')[0];
+            for (let i = 0; i < totalRow; i++) {
+                let tr = tableBody.rows[i];
+                let td = document.createElement('td');
+                td.appendChild(document.createTextNode("Cell " + i + "," + totalCol));
+                tr.appendChild(td);
+            }
+        }
+    }
+
+    function removeRowCol() {
+        if (document.getElementById('index').value.length == 0) {
+            alert('Bạn chưa điền giá trị hàng/cột cần xóa!');
+        } else {
+            let checkedItem = document.querySelector('input[name="col-row"]:checked').value;
+            if (checkedItem == 'row') {
+                removeRow();
+            } else {
+                removeColumn();
+            }
+        }
+    }
+
+    function removeColumn() {
+        if (document.getElementsByTagName('table').length == 0) {
+            alert('Bảng chưa được tạo!');
+        } else {
+            let table = document.getElementsByTagName('table')[0];
+            let totalCol = table.rows[0].cells.length;
+            let colIndex = document.getElementById('index').value;
+            if (totalCol < colIndex) {
+                alert('The selected number is larger than total column in table');
+            } else {
+                let totalRow = table.tBodies[0].rows.length;
+                let rows = table.rows;
+                for (let i = 0; i < rows.length; i++) {
+                    rows[i].deleteCell(colIndex - 1);
+                }
+                if (table.rows.length == 0) {
+                    table.remove();
+                }
+            }
+        }
+    }
+
+    function removeRow() {
+        if (document.getElementsByTagName('table').length == 0) {
+            alert('Bảng chưa được tạo!');
+        } else {
+            let table = document.getElementsByTagName('table')[0];
+            let totalCol = table.rows[0].cells.length;
+            let rowIndex = document.getElementById('index').value;
+            if (totalCol < rowIndex) {
+                alert('The selected number is larger than total column in table');
+            } else {
+                let totalRow = table.tBodies[0].rows.length;
+                table.deleteRow(rowIndex - 1);
+            }
+            if (table.rows.length == 0) {
+                table.remove();
+            }
+        }
+    }
+
+    function deleteTable() {
+        if (document.getElementsByTagName('table').length == 0) {
+            alert('Bảng chưa được tạo!');
+        } else {
+            document.getElementsByTagName('table')[0].remove();
+        }
+    }
+</script>
 
 </html>
